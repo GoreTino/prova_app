@@ -5,9 +5,7 @@ class Main extends MY_Controller {
     {
     	$this->_head();
 
-        $this->load->view('head');
         $this->load->view('main');
-        $this->load->view('footer');
 
         $this->_footer();
     }

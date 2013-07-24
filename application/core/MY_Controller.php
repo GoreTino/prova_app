@@ -19,7 +19,7 @@ class MY_Controller extends CI_Controller {
         $this->load->config('tutorials');
         $this->load->view('head');        
     }
-
+/*
     function _sidebar(){
         if ( ! $topics = $this->cache->get('topics')) {
             $topics = $this->topic_model->gets();    
@@ -27,7 +27,7 @@ class MY_Controller extends CI_Controller {
         }
         $this->load->view('topic_list', array('topics'=>$topics));
     }
-
+*/
     function _footer(){
         $this->load->view('footer');
     }
