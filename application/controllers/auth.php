@@ -79,22 +79,22 @@ class Auth extends MY_Controller {
 
     }
 
-    function confirmation_email()
+    function confirmation_email($user_email)
     {
         $this->load->library('email');
         // 전송할 데이터가 html 문서임을 옵션으로 설정
         $this->email->initialize(array('mailtype'=>'html'));
         $this->load->helper('url');
-        foreach($users as $user){
-            // 송신자의 이메일과 이름 정보
-            $this->email->from('master@ooo2.org', 'master');            
-            // 이메이 제목
-            $this->email->subject('글을 발행 됐습니다.');
-            // 이메일 본문
-            $this->email->message('<a href="'.site_url().'index.php/topic/get/'.$topic_id.'">'.$this->input->post('title').'</a>');
-            // 이메일 수신자.
-            $this->email->to($user->email);
-            // 이메일 발송
-            $this->email->send();
-    }
+      
+       // 송신자의 이메일과 이름 정보
+        $this->email->from('master@ooo2.org', 'master');            
+        // 이메이 제목
+        $this->email->subject('글을 발행 됐습니다.');
+        // 이메일 본문
+        //$this->email->message('<a href="'.site_url().'index.php/topic/get/'.$topic_id.'">'.$this->input->post('title').'</a>');
+        // 이메일 수신자.
+        $this->email->to($user_email);
+        // 이메일 발송
+        $this->email->send();
+    
 }
