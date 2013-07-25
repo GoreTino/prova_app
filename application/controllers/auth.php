@@ -10,7 +10,7 @@ class Auth extends MY_Controller {
     	$this->load->config('tutorials');
 
         $this->load->view('head');
-        $this->load->view('login');
+        $this->load->view('login', array('returnURL'=>$this->input->get('returnURL')));
         $this->load->view('footer');
 
         $this->_footer();
@@ -65,7 +65,11 @@ class Auth extends MY_Controller {
     	) {
     		$this->session->set_userdata('is_login', true);
     		$this->load->helper('url');
-    		redirect("main/add");
+    		
+            $returnURL = $this->input->get('returnURL');
+            log_message('info', $returnURL);
+            redirect($returnURL ? $returnURL : '/');
+
     	} else {
     		echo "Unmatched";
     		$this->session->set_flashdata('message', '로그인에 실패 했습니다.');
@@ -73,5 +77,24 @@ class Auth extends MY_Controller {
     		redirect('/auth/login');
     	}
 
+    }
+
+    function confirmation_email()
+    {
+        $this->load->library('email');
+        // 전송할 데이터가 html 문서임을 옵션으로 설정
+        $this->email->initialize(array('mailtype'=>'html'));
+        $this->load->helper('url');
+        foreach($users as $user){
+            // 송신자의 이메일과 이름 정보
+            $this->email->from('master@ooo2.org', 'master');            
+            // 이메이 제목
+            $this->email->subject('글을 발행 됐습니다.');
+            // 이메일 본문
+            $this->email->message('<a href="'.site_url().'index.php/topic/get/'.$topic_id.'">'.$this->input->post('title').'</a>');
+            // 이메일 수신자.
+            $this->email->to($user->email);
+            // 이메일 발송
+            $this->email->send();
     }
 }

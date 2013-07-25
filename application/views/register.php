@@ -10,12 +10,6 @@
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="nickname">닉네임</label>
-        <div class="controls">
-          <input type="text" id="nickname" name="nickname" value="<?php echo set_value('nickname'); ?>"  placeholder="닉네임">
-        </div>
-      </div>
-      <div class="control-group">
         <label class="control-label" for="password">비밀번호</label>
         <div class="controls">
           <input type="password" id="password" name="password" value="<?php echo set_value('password'); ?>"   placeholder="비밀번호">
