@@ -12,8 +12,10 @@
 				.form_control{
 					padding-top:20px;
 				}
-			</style>		
+			</style>
 			<link href="/static/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">		    
+
+			<?php echo $map['js']; ?>
         </head>
 		<body>
 			<div class="navbar navbar-fixed-top">
@@ -52,4 +54,3 @@
 					</div>
 				</div>
 			</div>
-		</body>

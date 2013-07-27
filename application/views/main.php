@@ -1,3 +1,3 @@
 <div class="span10">
-Main
-</div
+<?php echo $map['html']; ?>
+</div>
