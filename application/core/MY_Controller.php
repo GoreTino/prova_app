@@ -4,12 +4,15 @@ class MY_Controller extends CI_Controller {
     function __construct()
     {
         parent::__construct();
+        
         if($peak = $this->config->item('peak_page_cache')){
             if($peak == current_url()){
                 $this->output->cache(5);
             }
         }
+
         $this->load->database();
+        
         if(!$this->input->is_cli_request())
             $this->load->library('session');      
         $this->load->driver('cache', array('adapter' => 'file'));

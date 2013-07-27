@@ -13,9 +13,7 @@
 					padding-top:20px;
 				}
 			</style>
-			<link href="/static/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">		    
-
-			<?php echo $map['js']; ?>
+			<link href="/static/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
         </head>
 		<body>
 			<div class="navbar navbar-fixed-top">
