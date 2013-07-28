@@ -1,3 +1,15 @@
 <div class="span10">
-<?php echo $map['html']; ?>
+	<?php echo $map['html']; ?>
 </div>
+<div class="span3">
+	<div class="col-lg-6">
+		<div class="input-group">
+			<form action="/index.php/main/search_location" method="POST" enctype="multipart/form-data">
+      			<input type="text" id ="myPlaceTextBox" class="form-control">
+	      		<span class="input-group-btn">
+	        	<button type="submit" class="btn btn-default" >Go!</button>
+      			</span>
+      		</form>
+    	</div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</div><!-- /.span3 -->
