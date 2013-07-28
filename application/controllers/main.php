@@ -32,13 +32,19 @@ class Main extends MY_Controller {
         $this->_footer();
     }
 
-    function search_loation()
+    function search_location()
     {
     	$this->_head();
 
-    	$location = $this->input->post('myPlaceTextBox');
+		$location = $this->input->post('myPlaceTextBox');
+		echo 'location : '.$location;
+		$this->load->library('googlemaps');
 
-		echo 'Text : '.$location;
+		$config = array();
+
+		$config['center'] = $location;
+		$config['zoom'] = 'auto';
+		$config['places'] = TRUE;
 
 		$marker = array();
 		$marker['center'] = $location;
@@ -54,6 +60,7 @@ class Main extends MY_Controller {
       	$this->load->view('main', $data);
 
         $this->_footer();
+
 	}
 }
 ?>

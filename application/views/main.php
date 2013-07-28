@@ -1,4 +1,4 @@
-<div class="span10">
+<div class="span9">
 	<?php echo $map['html']; ?>
 </div>
 <div class="span3">
