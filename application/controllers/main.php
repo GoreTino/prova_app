@@ -58,8 +58,11 @@ class Main extends MY_Controller {
 		print_r($data['map']['js']);
 
       	$this->load->view('main', $data);
+
+      	$locations['current'] = $location;
 		
-		echo 'location : '.$location;
+		//$this->load->view('search_panel', array('topics'=>$topics));
+		$this->load->view('search_panel', $locations);
 
         $this->_footer();
 
