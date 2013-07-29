@@ -11,7 +11,7 @@ class Main extends MY_Controller {
 		$config['zoom'] = 'auto';
 		$config['places'] = TRUE;
 
-		$config['placesAutocompleteInputID'] = 'myPlaceTextBox';
+		$config['placesAutocompleteInputID'] = 'placeText';
 		$config['placesAutocompleteBoundsMap'] = TRUE; // set results biased towards the maps viewport
 		//$config['placesAutocompleteOnChange'] = 'alert(\'You selected a place\');';
 
@@ -36,8 +36,8 @@ class Main extends MY_Controller {
     {
     	$this->_head();
 
-		$location = $this->input->post('myPlaceTextBox');
-		echo 'location : '.$location;
+		$location = $this->input->post('placeText');
+
 		$this->load->library('googlemaps');
 
 		$config = array();
@@ -58,6 +58,8 @@ class Main extends MY_Controller {
 		print_r($data['map']['js']);
 
       	$this->load->view('main', $data);
+		
+		echo 'location : '.$location;
 
         $this->_footer();
 

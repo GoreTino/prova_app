@@ -4,8 +4,8 @@
 <div class="span3">
 	<div class="col-lg-6">
 		<div class="input-group">
-			<form action="/index.php/main/search_location" method="POST" enctype="multipart/form-data">
-      			<input type="text" id ="myPlaceTextBox" class="form-control">
+			<form action="/index.php/main/search_location" method="POST">
+      			<input type="text" id="placeText" name="placeText" class="form-control" />
 	      		<span class="input-group-btn">
 	        	<button type="submit" class="btn btn-default" >Go!</button>
       			</span>
