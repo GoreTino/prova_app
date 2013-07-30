@@ -44,15 +44,21 @@ class Main extends MY_Controller {
 		$config = array();
 
 		$config['center'] = $location;
-		$config['zoom'] = 'auto';
+		$config['zoom'] = '13';
 		$config['places'] = TRUE;
+		$config['geocodeCaching'] = TRUE;
 
-		$marker = array();
-		$marker['center'] = $location;
-
-		$this->googlemaps->add_marker($marker);
+		$config['placesAutocompleteInputID'] = 'placeText';
+		$config['placesAutocompleteBoundsMap'] = TRUE;
 
 		$this->googlemaps->initialize($config);
+
+		$marker = array();
+		$marker['position'] = $location;
+		$marker['infowindow_content'] = '1 - Hello World!';
+		$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+
+		$this->googlemaps->add_marker($marker);
 
 		$data['map'] = $this->googlemaps->create_map();
 

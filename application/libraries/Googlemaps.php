@@ -2150,7 +2150,7 @@ class Googlemaps {
 			$CI =& get_instance();
 			$CI->load->database(); 
 			$CI->db->select("latitude,longitude");
-			$CI->db->from("geocoding");
+			$CI->db->from("geocode_cache");
 			$CI->db->where("address", trim(strtolower($address)));
 			$query = $CI->db->get();
 			
@@ -2179,7 +2179,7 @@ class Googlemaps {
 					"latitude"=>$lat,
 					"longitude"=>$lng
 				);
-				$CI->db->insert("geocoding", $data);
+				$CI->db->insert("geocode_cache", $data);
 			}
 		}
 		else
