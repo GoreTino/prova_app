@@ -28,6 +28,7 @@ class Main extends MY_Controller {
 		print_r($data['map']['js']);
 		
         $this->load->view('main', $data);
+        $this->load->view('search_panel');
 
         $this->_footer();
     }
