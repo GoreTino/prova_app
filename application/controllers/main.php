@@ -1,6 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Main extends MY_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+     	
+     	$this->load->model('map_cache');
+     }
+
     public function index()
     {
     	$this->_head();
@@ -67,9 +74,9 @@ class Main extends MY_Controller {
       	$this->load->view('main', $data);
 
       	$locations['current'] = $location;
-		
+		$map_cache = $this->map_cache->get_map_cache();
 		//$this->load->view('search_panel', array('topics'=>$topics));
-		$this->load->view('search_panel', $locations);
+		$this->load->view('search_panel', $map_cache);
 
         $this->_footer();
 

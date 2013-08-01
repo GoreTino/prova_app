@@ -11,14 +11,13 @@
     </div><!-- /.col-lg-6 -->
     <table class="table table-hover">
 <?php
-	if (!empty($current)) {
+	//$map_cache = $thhis->load->model('map_cache');
 
-	
-	//foreach($locations as $entry){
-
-		echo $current;
+	if (!empty($map_cache)) {
+		foreach($address as $map_cache){
+			echo $address;
+		}
 	}
-	//}
 ?>
 	</table>
 </div><!-- /.span3 -->
