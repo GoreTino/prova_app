@@ -73,10 +73,10 @@ class Main extends MY_Controller {
 
       	$this->load->view('main', $data);
 
-      	$locations['current'] = $location;
+      	//$locations['current'] = $location;
 		$map_cache = $this->map_cache->get_map_cache();
 		//$this->load->view('search_panel', array('topics'=>$topics));
-		$this->load->view('search_panel', $map_cache);
+		$this->load->view('search_panel', array('map_cache'=>$map_cache));
 
         $this->_footer();
 

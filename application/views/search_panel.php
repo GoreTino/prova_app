@@ -1,21 +1,21 @@
 <div class="span3">
-	<div class="col-lg-6">
-		<div class="input-group">
-			<form action="/index.php/main/search_location" method="POST">
-      			<input type="text" id="placeText" name="placeText" class="form-control">
-	      		<span class="input-group-btn">
-	        		<button type="submit" class="btn btn-default" >Go!</button>
-      			</span>
-      		</form>
-    	</div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
+	<div class="input-append">	
+		<form class="form-search" action="/index.php/main/search_location" method="POST">			
+      		<input type="text" class="span3" id="placeText" name="placeText">	      	
+	       	<button type="submit" class="btn">Search</button>      			
+      	</form>
+    </div><!-- /.input-append -->
     <table class="table table-hover">
 <?php
-	//$map_cache = $thhis->load->model('map_cache');
-
-	if (!empty($map_cache)) {
-		foreach($address as $map_cache){
-			echo $address;
+	if (!empty($map_cache)) {		
+		foreach($map_cache as $entry){
+?>
+			<tr><td>
+			<?= $entry->address ?>
+			</td><td>
+			<button type="submit" class="btn">Select</button>
+			</td></tr>
+<?php
 		}
 	}
 ?>
