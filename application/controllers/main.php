@@ -81,5 +81,47 @@ class Main extends MY_Controller {
         $this->_footer();
 
 	}
+
+	function select_location()
+    {
+    	$this->_head();
+		
+    	$location = $this->input->post('location');			
+		
+		$this->load->library('googlemaps');
+    	
+		$config = array();
+
+		$config['center'] = $location['address'];
+		$config['zoom'] = '13';
+		$config['places'] = TRUE;
+		$config['geocodeCaching'] = TRUE;
+
+		$config['placesAutocompleteInputID'] = 'placeText';
+		$config['placesAutocompleteBoundsMap'] = TRUE;
+
+		$this->googlemaps->initialize($config);
+
+		$marker = array();
+		$marker['position'] =$location['address'];
+		$marker['infowindow_content'] = '1 - Hello World!';
+		$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+
+		$this->googlemaps->add_marker($marker);
+
+		$data['map'] = $this->googlemaps->create_map();
+
+		print_r($data['map']['js']);
+
+      	$this->load->view('main', $data);
+      	
+      	$map_cache = $this->map_cache->get_map_cache();
+		
+		$this->load->view('search_panel', array('map_cache'=>$map_cache));
+
+		$this->load->view('results_panel', array('selected_location'=>$location));
+
+    	$this->_footer();
+    }
 }
 ?>
