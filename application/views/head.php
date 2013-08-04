@@ -12,6 +12,12 @@
 				.form_control{
 					padding-top:20px;
 				}
+				.scrollspy-result {
+					max-width: 100%;
+					height: 380px;
+					overflow: auto;
+					position: relative;
+				}
 			</style>
 			<link href="/static/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
         </head>
