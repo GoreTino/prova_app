@@ -1,14 +1,16 @@
-<div class="span12">
-    <table class="table">
-		<tr><td>
-			<?= $selected_location['address'] ?>
-		</td></tr>
-		<tr><td>
-			<form class="form-search" action="/index.php/main/location_memo" method="POST">			
-      		<textarea rows="12" id="placeText" name="placeText"></textarea>	      	
-	       	<button type="submit" class="btn">Edit</button>
-	       	<button type="submit" class="btn">Save</button>       			
-      	</form>
-		</td></tr>
-	</table>
-</div><!-- /.span3 -->
+<div class="container-fluid">
+	<div class="accordion">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+	     	   		<?= $selected_location['address'] ?>
+				</a>
+	   		</div>
+	   		<div id="collapseOne" class="accordion-body collapse in">
+		  		<div class="accordion-inner">
+		       	Anim pariatur cliche...
+		    	</div><!-- /.accordion-inner -->
+		  	</div><!-- /.accordion-body collapse in -->
+		</div><!-- /.accordion-group -->
+	</div><!-- /.accordion -->
+</div><!-- /.<div class="container-fluid"> -->

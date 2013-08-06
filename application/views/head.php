@@ -20,6 +20,7 @@
 				}
 			</style>
 			<link href="/static/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+			<script src="/static/lib/ckeditor/ckeditor.js"></script>
         </head>
 		<body>
 			<div class="navbar navbar-fixed-top">
