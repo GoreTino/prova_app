@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<div class="accordion">
+	<div class="accordion span3">
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
