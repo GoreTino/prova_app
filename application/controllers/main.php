@@ -35,7 +35,7 @@ class Main extends MY_Controller {
 		print_r($data['map']['js']);
 		
         $this->load->view('main', $data);
-        $this->load->view('search_panel');
+        //$this->load->view('search_panel');
 
         $this->_footer();
     }
@@ -75,8 +75,9 @@ class Main extends MY_Controller {
 
       	//$locations['current'] = $location;
 		$map_cache = $this->map_cache->get_map_cache();
-		//$this->load->view('search_panel', array('topics'=>$topics));
-		$this->load->view('search_panel', array('map_cache'=>$map_cache));
+		
+		$this->load->view('main', array('map_cache'=>$map_cache));
+		//$this->load->view('search_panel', array('map_cache'=>$map_cache));
 
         $this->_footer();
 
