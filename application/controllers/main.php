@@ -138,7 +138,48 @@ class Main extends MY_Controller {
 
 	function place_memo()
     {
-    	$location = $this->input->post('placeText');
+    	$this->_head();
+		$this->load->view('navigation_panel');
+
+    	$location = $this->input->post('location');			
+		
+		$this->load->library('googlemaps');
+    	
+		$config = array();
+
+		$config['center'] = $location['address'];
+		$config['zoom'] = '13';
+		$config['places'] = TRUE;
+		$config['geocodeCaching'] = TRUE;
+
+		$config['placesAutocompleteInputID'] = 'placeText';
+		$config['placesAutocompleteBoundsMap'] = TRUE;
+
+		$this->googlemaps->initialize($config);
+
+		$marker = array();
+		$marker['position'] =$location['address'];
+		$marker['infowindow_content'] = '1 - Hello World!';
+		$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+
+		$this->googlemaps->add_marker($marker);
+
+		$data['map'] = $this->googlemaps->create_map();
+
+		print_r($data['map']['js']);
+
+		$map_cache = $this->map_cache->get_map_cache();
+
+		//$memo_panel = $this->load->view('place_memo_panel', '', TRUE);
+
+		$params = array('map' => $data['map']);
+
+		$this->load->view('main', $params);		
+		$this->load->view('place_memo_panel');
+       
+		$this->load->view('results_panel', array('selected_location'=>$location));
+
+    	$this->_footer();
     }    
 }
 ?>

@@ -2,13 +2,13 @@
 	<div class="row-fluid">
 		<div class="span8">
 			<div class="hero-unit">
-<?php 
+<?php
 				echo $map['html']; 
 ?>
 			</div> <!-- /.hero-unit -->
 		</div> <!-- /.span8 -->
 		<div class="span4">
-<?php 
+<?php
 			echo $custom_panel; 
 ?>
 		</div> <!-- /.span4 -->
