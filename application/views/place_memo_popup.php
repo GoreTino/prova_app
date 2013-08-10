@@ -7,10 +7,10 @@
 	</div>
 	<div class="modal-body">
 		<form class="form-search" action="/index.php/main/location_memo" method="POST">
-			<textarea rows="12" id="locationText" name="locationText">
+			<textarea rows="12" id="placeMemo" name="placeMemo">
       		</textarea>   
      		<script>
-      	      CKEDITOR.replace( 'locationText' );
+      	      CKEDITOR.replace( 'placeMemo' );
        		</script>
 			<a href="#" class="btn">Close</a>
   	 		<a href="#" class="btn btn-primary">Save changes</a>

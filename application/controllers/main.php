@@ -11,6 +11,7 @@ class Main extends MY_Controller {
     public function index()
     {
     	$this->_head();
+    	$this->load->view('navigation_panel');
 
 		$this->load->library('googlemaps');
 
@@ -33,9 +34,13 @@ class Main extends MY_Controller {
 		$data['map'] = $this->googlemaps->create_map();
 
 		print_r($data['map']['js']);
-		
-        $this->load->view('main', $data);
-        //$this->load->view('search_panel');
+		        
+		$search_panel = $this->load->view('search_panel', '', TRUE);
+
+		$params = array('map' => $data['map'],				
+						'custom_panel' => $search_panel);
+
+		$this->load->view('main', $params);
 
         $this->_footer();
     }
@@ -43,6 +48,7 @@ class Main extends MY_Controller {
     function search_location()
     {
     	$this->_head();
+		$this->load->view('navigation_panel');
 
 		$location = $this->input->post('placeText');
 
@@ -71,13 +77,14 @@ class Main extends MY_Controller {
 
 		print_r($data['map']['js']);
 
-      	$this->load->view('main', $data);
-
-      	//$locations['current'] = $location;
 		$map_cache = $this->map_cache->get_map_cache();
-		
-		$this->load->view('main', array('map_cache'=>$map_cache));
-		//$this->load->view('search_panel', array('map_cache'=>$map_cache));
+
+		$search_panel = $this->load->view('search_panel', array('map_cache'=>$map_cache), TRUE);
+
+		$params = array('map' => $data['map'],
+						'custom_panel' => $search_panel);
+
+		$this->load->view('main', $params);
 
         $this->_footer();
 
@@ -86,7 +93,8 @@ class Main extends MY_Controller {
 	function select_location()
     {
     	$this->_head();
-		
+		$this->load->view('navigation_panel');
+
     	$location = $this->input->post('location');			
 		
 		$this->load->library('googlemaps');
@@ -114,15 +122,23 @@ class Main extends MY_Controller {
 
 		print_r($data['map']['js']);
 
-      	$this->load->view('main', $data);
-      	
-      	$map_cache = $this->map_cache->get_map_cache();
-		
-		$this->load->view('search_panel', array('map_cache'=>$map_cache));
+		$map_cache = $this->map_cache->get_map_cache();
 
+		$search_panel = $this->load->view('search_panel', array('map_cache'=>$map_cache), TRUE);
+
+		$params = array('map' => $data['map'],
+						'custom_panel' => $search_panel);
+
+		$this->load->view('main', $params);		
+       
 		$this->load->view('results_panel', array('selected_location'=>$location));
 
     	$this->_footer();
     }
+
+	function place_memo()
+    {
+    	$location = $this->input->post('placeText');
+    }    
 }
 ?>

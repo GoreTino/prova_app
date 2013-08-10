@@ -1,4 +1,4 @@
-<div class="span4">
+<div class="well sidebar-nav">
 	<div class="input-append">	
 		<form class="form-search" action="/index.php/main/search_location" method="POST">			
       		<input type="text" id="placeText" name="placeText">	      	
@@ -9,7 +9,7 @@
 	    <table class="table table-hover">
 <?php
 		if (!empty($map_cache)) {		
-			foreach($map_cache as $entry){
+			foreach($map_cache as $entry) {
 ?>
 				<tr><td>
 					<?= $entry->address ?>
@@ -26,5 +26,5 @@
 		}
 ?>
 		</table>
-	</div>
-</div><!-- /.span4 -->
+	</div> <!-- ./scrollspy-result -->
+</div> <!-- ./well sidebar-nav -->

@@ -3,7 +3,10 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-	     	   		<?= $selected_location['address'] ?>
+					<form class="form-search" action="/index.php/main/place_memo" method="POST">		
+	     	   			<?= $selected_location['address'] ?>	     	   		
+				       	<button type="submit" class="btn">Memo</button>      			
+			      	</form>
 				</a>
 	   		</div>
 	   		<div id="collapseOne" class="accordion-body collapse in">
