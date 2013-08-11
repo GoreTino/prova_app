@@ -175,9 +175,10 @@ class Main extends MY_Controller {
 		$params = array('map' => $data['map']);
 
 		$this->load->view('main', $params);		
-		$this->load->view('place_memo_panel');
-       
+	
 		$this->load->view('results_panel', array('selected_location'=>$location));
+
+		$this->load->view('place_memo_panel');
 
     	$this->_footer();
     }    

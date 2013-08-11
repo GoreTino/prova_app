@@ -6,8 +6,8 @@
 					<?= $selected_location['address'] ?>	 
 				</a>
 					<form class="form-search" action="/index.php/main/place_memo" method="POST">     	   		
-				       	<button type="submit" class="btn">Memo</button>      			
-			      	</form>
+				       	<button type="submit" class="btn btn-mini">Memo</button>				      
+			      	</form>			      	
 	   		</div>
 	   		<div id="collapseOne" class="accordion-body collapse in">
 		  		<div class="accordion-inner">
