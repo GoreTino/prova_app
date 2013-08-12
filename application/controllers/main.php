@@ -13,25 +13,10 @@ class Main extends MY_Controller {
     	$this->_head();
     	$this->load->view('navigation_panel');
 
-		$this->load->library('googlemaps');
-
-		$config['center'] = '37.4419, -122.1419';
+		//$config['center'] = '37.4419, -122.1419';
 		$config['zoom'] = 'auto';
-		$config['places'] = TRUE;
 
-		$config['placesAutocompleteInputID'] = 'placeText';
-		$config['placesAutocompleteBoundsMap'] = TRUE; // set results biased towards the maps viewport
-		//$config['placesAutocompleteOnChange'] = 'alert(\'You selected a place\');';
-
-		$this->googlemaps->initialize($config);
-
-		//$marker = array();
-		//$marker['position'] = '37.429, -122.1419';
-
-		//$this->googlemaps->add_marker($marker);
-
-		//$data = array();
-		$data['map'] = $this->googlemaps->create_map();
+		$data = $this->map_config($config, array());
 
 		print_r($data['map']['js']);
 		        
@@ -52,28 +37,16 @@ class Main extends MY_Controller {
 
 		$location = $this->input->post('placeText');
 
-		$this->load->library('googlemaps');
-
 		$config = array();
 
 		$config['center'] = $location;
 		$config['zoom'] = '13';
-		$config['places'] = TRUE;
-		$config['geocodeCaching'] = TRUE;
-
-		$config['placesAutocompleteInputID'] = 'placeText';
-		$config['placesAutocompleteBoundsMap'] = TRUE;
-
-		$this->googlemaps->initialize($config);
 
 		$marker = array();
-		$marker['position'] = $location;
-		$marker['infowindow_content'] = '1 - Hello World!';
-		$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+		$marker['place'] = $location;
+		$marker['message'] = '1 - Hello World!';
 
-		$this->googlemaps->add_marker($marker);
-
-		$data['map'] = $this->googlemaps->create_map();
+		$data = $this->map_config($config, $marker);
 
 		print_r($data['map']['js']);
 
@@ -90,35 +63,49 @@ class Main extends MY_Controller {
 
 	}
 
-	function select_location()
-    {
-    	$this->_head();
-		$this->load->view('navigation_panel');
+	function map_config(array $config = array(), array $place = array())
+	{
+		$this->googlemaps->initialize($config);
 
-    	$location = $this->input->post('location');			
-		
-		$this->load->library('googlemaps');
-    	
-		$config = array();
+		if (!empty($place))
+		{
+			$marker = array();
+			$marker['position'] = $place['place'];
+			$marker['infowindow_content'] = $place['message'];
+			$marker['icon'] = $place['icon'];			
+			$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
 
-		$config['center'] = $location['address'];
-		$config['zoom'] = '13';
+			$this->googlemaps->add_marker($marker);
+		}
+
 		$config['places'] = TRUE;
 		$config['geocodeCaching'] = TRUE;
 
 		$config['placesAutocompleteInputID'] = 'placeText';
 		$config['placesAutocompleteBoundsMap'] = TRUE;
 
-		$this->googlemaps->initialize($config);
+		$data['map'] = $this->googlemaps->create_map();
+
+		return $data;
+	}
+
+	function select_location()
+    {
+    	$this->_head();
+		$this->load->view('navigation_panel');
+
+    	$location = $this->input->post('location');			
+		   	
+		$config = array();
+
+		$config['center'] = $location['address'];
+		$config['zoom'] = '13';
 
 		$marker = array();
-		$marker['position'] =$location['address'];
-		$marker['infowindow_content'] = '1 - Hello World!';
-		$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+		$marker['place'] = $location['address'];
+		$marker['message'] = '1 - Hello World!';
 
-		$this->googlemaps->add_marker($marker);
-
-		$data['map'] = $this->googlemaps->create_map();
+		$data = $this->map_config($config, $marker);
 
 		print_r($data['map']['js']);
 
@@ -129,8 +116,7 @@ class Main extends MY_Controller {
 		$params = array('map' => $data['map'],
 						'custom_panel' => $search_panel);
 
-		$this->load->view('main', $params);		
-       
+		$this->load->view('main', $params);		     
 		$this->load->view('results_panel', array('selected_location'=>$location));
 
     	$this->_footer();
@@ -142,29 +128,17 @@ class Main extends MY_Controller {
 		$this->load->view('navigation_panel');
 
     	$location = $this->input->post('location');			
-		
-		$this->load->library('googlemaps');
-    	
+		    	
 		$config = array();
 
 		$config['center'] = $location['address'];
 		$config['zoom'] = '13';
-		$config['places'] = TRUE;
-		$config['geocodeCaching'] = TRUE;
-
-		$config['placesAutocompleteInputID'] = 'placeText';
-		$config['placesAutocompleteBoundsMap'] = TRUE;
-
-		$this->googlemaps->initialize($config);
 
 		$marker = array();
-		$marker['position'] =$location['address'];
-		$marker['infowindow_content'] = '1 - Hello World!';
-		$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
+		$marker['place'] =$location['address'];
+		$marker['message'] = '1 - Hello World!';
 
-		$this->googlemaps->add_marker($marker);
-
-		$data['map'] = $this->googlemaps->create_map();
+		$data = $this->map_config($config, $marker);
 
 		print_r($data['map']['js']);
 
@@ -175,9 +149,7 @@ class Main extends MY_Controller {
 		$params = array('map' => $data['map']);
 
 		$this->load->view('main', $params);		
-	
 		$this->load->view('results_panel', array('selected_location'=>$location));
-
 		$this->load->view('place_memo_panel');
 
     	$this->_footer();
