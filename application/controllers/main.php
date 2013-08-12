@@ -65,6 +65,12 @@ class Main extends MY_Controller {
 
 	function map_config(array $config = array(), array $place = array())
 	{
+		$config['places'] = TRUE;
+		$config['geocodeCaching'] = TRUE;
+
+		$config['placesAutocompleteInputID'] = 'placeText';
+		$config['placesAutocompleteBoundsMap'] = TRUE;
+
 		$this->googlemaps->initialize($config);
 
 		if (!empty($place))
@@ -72,17 +78,11 @@ class Main extends MY_Controller {
 			$marker = array();
 			$marker['position'] = $place['place'];
 			$marker['infowindow_content'] = $place['message'];
-			$marker['icon'] = $place['icon'];			
+			//$marker['icon'] = $place['icon'];			
 			$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|9999FF|000000';
 
 			$this->googlemaps->add_marker($marker);
 		}
-
-		$config['places'] = TRUE;
-		$config['geocodeCaching'] = TRUE;
-
-		$config['placesAutocompleteInputID'] = 'placeText';
-		$config['placesAutocompleteBoundsMap'] = TRUE;
 
 		$data['map'] = $this->googlemaps->create_map();
 
