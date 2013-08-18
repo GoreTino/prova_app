@@ -7,12 +7,11 @@
 			<link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 			<style>
 				body{
-					padding-top:60px;
 				}
 				.form_control{
 					padding-top:20px;
 				}
-				.hero-unit {
+				.jumbotron {
 					margin: 5px 5px;
 					padding: 5px 5px;
 				}
